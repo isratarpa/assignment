@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ZeroHungerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AccountLogInTable">
+    <Key>
+      <PropertyRef Name="AccountLogId" />
+    </Key>
+    <Property Name="AccountLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountLogName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AccountLogPassword" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CollectRequestTable">
+    <Key>
+      <PropertyRef Name="CollectRequestId" />
+    </Key>
+    <Property Name="CollectRequestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CollectStatus" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RestId" Type="int" Nullable="false" />
+    <Property Name="EmpId" Type="int" Nullable="false" />
+    <Property Name="PlacingTime" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmpTable">
+    <Key>
+      <PropertyRef Name="EmpId" />
+    </Key>
+    <Property Name="EmpId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmpLocation" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RequestsCompleted" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NGOId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FoodTable">
+    <Key>
+      <PropertyRef Name="FdID" />
+    </Key>
+    <Property Name="FdID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FdName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FdAmount" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CollectRequestId" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NGOTable">
+    <Key>
+      <PropertyRef Name="NGOId" />
+    </Key>
+    <Property Name="NGOId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NGOName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NGOLocation" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TotalEmployees" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RequestsCompleted" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RestaurantTable">
+    <Key>
+      <PropertyRef Name="RestId" />
+    </Key>
+    <Property Name="RestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RestName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RestLocation" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_CollectRequestTable_EmpTable">
+    <End Role="EmpTable" Type="Self.EmpTable" Multiplicity="1" />
+    <End Role="CollectRequestTable" Type="Self.CollectRequestTable" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="EmpTable">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="CollectRequestTable">
+        <PropertyRef Name="CollectRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CollectRequestTable_FoodTable">
+    <End Role="FoodTable" Type="Self.FoodTable" Multiplicity="1" />
+    <End Role="CollectRequestTable" Type="Self.CollectRequestTable" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="FoodTable">
+        <PropertyRef Name="FdID" />
+      </Principal>
+      <Dependent Role="CollectRequestTable">
+        <PropertyRef Name="CollectRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CollectRequestTable_RestaurantTable">
+    <End Role="RestaurantTable" Type="Self.RestaurantTable" Multiplicity="1" />
+    <End Role="CollectRequestTable" Type="Self.CollectRequestTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RestaurantTable">
+        <PropertyRef Name="RestId" />
+      </Principal>
+      <Dependent Role="CollectRequestTable">
+        <PropertyRef Name="RestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmpTable_NGOTable">
+    <End Role="NGOTable" Type="Self.NGOTable" Multiplicity="1" />
+    <End Role="EmpTable" Type="Self.EmpTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NGOTable">
+        <PropertyRef Name="NGOId" />
+      </Principal>
+      <Dependent Role="EmpTable">
+        <PropertyRef Name="NGOId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ZeroHungerModelStoreContainer">
+    <EntitySet Name="AccountLogInTable" EntityType="Self.AccountLogInTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CollectRequestTable" EntityType="Self.CollectRequestTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmpTable" EntityType="Self.EmpTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FoodTable" EntityType="Self.FoodTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NGOTable" EntityType="Self.NGOTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RestaurantTable" EntityType="Self.RestaurantTable" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CollectRequestTable_EmpTable" Association="Self.FK_CollectRequestTable_EmpTable">
+      <End Role="EmpTable" EntitySet="EmpTable" />
+      <End Role="CollectRequestTable" EntitySet="CollectRequestTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CollectRequestTable_FoodTable" Association="Self.FK_CollectRequestTable_FoodTable">
+      <End Role="FoodTable" EntitySet="FoodTable" />
+      <End Role="CollectRequestTable" EntitySet="CollectRequestTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CollectRequestTable_RestaurantTable" Association="Self.FK_CollectRequestTable_RestaurantTable">
+      <End Role="RestaurantTable" EntitySet="RestaurantTable" />
+      <End Role="CollectRequestTable" EntitySet="CollectRequestTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmpTable_NGOTable" Association="Self.FK_EmpTable_NGOTable">
+      <End Role="NGOTable" EntitySet="NGOTable" />
+      <End Role="EmpTable" EntitySet="EmpTable" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

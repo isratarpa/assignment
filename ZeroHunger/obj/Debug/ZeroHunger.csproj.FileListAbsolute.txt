@@ -1,0 +1,2 @@
+C:\Users\user\source\repos\ZeroHunger\ZeroHunger\obj\Debug\ZeroHunger.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\ZeroHunger\ZeroHunger\obj\Debug\ZeroHunger.csproj.CoreCompileInputs.cache

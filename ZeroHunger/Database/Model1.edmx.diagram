@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f5b631d02f194978a32d0b45b6556785" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="ZeroHungerModel.AccountLogInTable" Width="1.5" PointX="10.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZeroHungerModel.CollectRequestTable" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZeroHungerModel.EmpTable" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZeroHungerModel.FoodTable" Width="1.5" PointX="8" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZeroHungerModel.NGOTable" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZeroHungerModel.RestaurantTable" Width="1.5" PointX="5.125" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="ZeroHungerModel.FK_CollectRequestTable_EmpTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ZeroHungerModel.FK_CollectRequestTable_FoodTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ZeroHungerModel.FK_CollectRequestTable_RestaurantTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ZeroHungerModel.FK_EmpTable_NGOTable" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
